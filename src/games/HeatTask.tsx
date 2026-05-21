@@ -10,11 +10,9 @@ const HeatTask: React.FC<HeatTaskProps> = ({ onComplete }) => {
   const [showIntro, setShowIntro] = useState(true);
   const [heatLevel, setHeatLevel] = useState(0);
   const [taskComplete, setTaskComplete] = useState(false);
-  const [isRubbing, setIsRubbing] = useState(false);
   const [cameraActive, setCameraActive] = useState(false);
   const [cameraError, setCameraError] = useState<string | null>(null);
   const [motionLevel, setMotionLevel] = useState(0);
-  const [rubbingDetected, setRubbingDetected] = useState(false);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -89,10 +87,7 @@ const HeatTask: React.FC<HeatTaskProps> = ({ onComplete }) => {
         setMotionLevel(motion);
 
         if (motion > 14) {
-          setRubbingDetected(true);
           setHeatLevel(prev => Math.min(100, prev + 6));
-          setIsRubbing(true);
-          window.setTimeout(() => setIsRubbing(false), 220);
         }
       }
 
@@ -117,8 +112,6 @@ const HeatTask: React.FC<HeatTaskProps> = ({ onComplete }) => {
   const rubHands = () => {
     if (heatLevel < 100) {
       setHeatLevel(prev => Math.min(100, prev + 14));
-      setIsRubbing(true);
-      window.setTimeout(() => setIsRubbing(false), 220);
     }
   };
 

@@ -6,12 +6,14 @@ interface DialogueBoxProps {
   details?: string;
   onNext?: () => void;
   showNext?: boolean;
+  style?: React.CSSProperties;
 }
 
-const DialogueBox: React.FC<DialogueBoxProps> = ({ text, details, onNext, showNext = true }) => {
+const DialogueBox: React.FC<DialogueBoxProps> = ({ text, details, onNext, showNext = true, style }) => {
   return (
     <motion.div 
       className="dialogue-box glass"
+      style={style}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}

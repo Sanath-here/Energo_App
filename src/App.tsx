@@ -11,6 +11,7 @@ import ConservationSim from './games/ConservationSim';
 import FinalQuiz from './games/FinalQuiz';
 
 type GameState =
+  | 'ENERGY'
   | 'INTRO'
   | 'MECHANICAL'
   | 'HEAT'
@@ -24,6 +25,7 @@ type GameState =
   | 'END';
 
 const states: GameState[] = [
+  'ENERGY',
   'INTRO',
   'MECHANICAL',
   'HEAT',
@@ -37,22 +39,8 @@ const states: GameState[] = [
   'END',
 ];
 
-const stepLabels: Record<GameState, string> = {
-  INTRO: 'Welcome',
-  MECHANICAL: 'Mechanical',
-  HEAT: 'Heat',
-  LIGHT: 'Light',
-  ELECTRICAL: 'Electrical',
-  CHEMICAL: 'Chemical',
-  CONSERVATION: 'Conservation',
-  USES: 'Energy Uses',
-  SUMMARY: 'Summary',
-  QUIZ: 'Quiz',
-  END: 'Finish',
-};
-
 const App: React.FC = () => {
-  const [gameState, setGameState] = useState<GameState>('INTRO');
+  const [gameState, setGameState] = useState<GameState>('ENERGY');
   const currentIndex = useMemo(() => states.indexOf(gameState), [gameState]);
 
   const nextState = () => {
@@ -63,6 +51,41 @@ const App: React.FC = () => {
 
   const renderContent = () => {
     switch (gameState) {
+      case 'ENERGY':
+        return (
+          <div className="hero-card glass">
+            <div className="hero-copy">
+              <p className="eyebrow">Energy in action</p>
+              <h2 className="hero-title">What is ENERGY?</h2>
+              <p className="hero-text">
+                Energy makes things move, shine, heat up, and change. Here are some everyday forms of energy.
+              </p>
+              <div className="energy-image-grid">
+                <div className="energy-card">
+                  <div className="energy-thumb">⚡</div>
+                  <p>Electricity</p>
+                </div>
+                <div className="energy-card">
+                  <div className="energy-thumb">🔥</div>
+                  <p>Heat</p>
+                </div>
+                <div className="energy-card">
+                  <div className="energy-thumb">💡</div>
+                  <p>Light</p>
+                </div>
+                <div className="energy-card">
+                  <div className="energy-thumb">🔋</div>
+                  <p>Chemical</p>
+                </div>
+                <div className="energy-card">
+                  <div className="energy-thumb">⚙️</div>
+                  <p>Motion</p>
+                </div>
+              </div>
+              <button className="btn btn-primary mt-6" onClick={nextState}>Meet Energo</button>
+            </div>
+          </div>
+        );
       case 'INTRO':
         return (
           <div className="hero-card glass">
@@ -72,11 +95,15 @@ const App: React.FC = () => {
               <p className="hero-text">
                 Tap into the science behind motion, heat, light, electricity, and chemistry with fun challenges and a glowing companion.
               </p>
+              <div className="hero-face">
+                <ThreeDCharacter />
+              </div>
+              <DialogueBox
+                text="Hello! I'm Energo. I'm here to teach you all about ENERGY! Energy is the ability to do work. Let's explore its different forms together." 
+                onNext={nextState}
+                style={{ position: 'static', marginTop: '1rem' }}
+              />
             </div>
-            <DialogueBox
-              text="Hello! I'm Energo. I'm here to teach you all about ENERGY! Energy is the ability to do work. Let's explore its different forms together." 
-              onNext={nextState}
-            />
           </div>
         );
       case 'MECHANICAL':
@@ -93,7 +120,7 @@ const App: React.FC = () => {
         return <ConservationSim onComplete={nextState} />;
       case 'USES':
         return (
-          <div className="section-card glass" style={{ overflowY: 'auto', paddingBottom: '3.5rem' }}>
+          <div className="section-card glass" style={{ paddingBottom: '5rem' }}>
             <div className="section-header">
               <h2>Energy Uses</h2>
               <p>Great work! Here are the real-world uses of the energy types you explored.</p>
@@ -109,6 +136,7 @@ const App: React.FC = () => {
             <DialogueBox
               text={'Nice review! Ready to continue to the summary?'}
               onNext={nextState}
+              style={{ position: 'static', marginTop: '1rem' }}
             />
           </div>
         );
@@ -161,22 +189,6 @@ const App: React.FC = () => {
         </header>
 
         <main className="content-area"> {renderContent()} </main>
-
-        <footer className="progress-footer glass">
-          <div className="progress-line">
-            {states.map((state, index) => (
-              <button
-                key={state}
-                className={`progress-step ${index <= currentIndex ? 'active' : ''}`}
-                aria-label={stepLabels[state]}
-                type="button"
-              >
-                <span>{index + 1}</span>
-              </button>
-            ))}
-          </div>
-          <p className="progress-label">{stepLabels[gameState]}</p>
-        </footer>
       </div>
     </div>
   );

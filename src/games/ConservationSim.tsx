@@ -84,9 +84,9 @@ const ConservationSim: React.FC<ConservationSimProps> = ({ onComplete }) => {
               const selected = choice === option;
               const stateClass = selected
                 ? isCorrect
-                  ? 'border-green-400 bg-green-500/10 text-green-100'
-                  : 'border-red-400 bg-red-500/10 text-red-100'
-                : 'border-gray-600 bg-white-10 text-gray-200';
+                  ? 'border-green-400 bg-green-500/10'
+                  : 'border-red-400 bg-red-500/10'
+                : 'border-gray-600 bg-white-10';
 
               return (
                 <motion.button
@@ -95,11 +95,11 @@ const ConservationSim: React.FC<ConservationSimProps> = ({ onComplete }) => {
                   whileTap={{ scale: 0.98 }}
                   onClick={() => selectChoice(option)}
                   className={`flex items-center gap-3 p-4 rounded-2xl border ${stateClass} shadow-md transition-transform`}
-                  style={{ minHeight: 64, alignItems: 'center' }}
+                  style={{ minHeight: 64, alignItems: 'center', color: 'white' }}
                 >
-                  <div style={{ fontSize: 22, width: 36, textAlign: 'center' }}>{emojiMap[option] ?? '🔹'}</div>
+                  <div style={{ fontSize: 22, width: 36, textAlign: 'center', color: 'white' }}>{emojiMap[option] ?? '🔹'}</div>
                   <div className="flex-1 text-sm">
-                    <div className="font-semibold">{option}</div>
+                    <div className="font-semibold text-white">{option}</div>
                   </div>
                 </motion.button>
               );
@@ -132,6 +132,7 @@ const ConservationSim: React.FC<ConservationSimProps> = ({ onComplete }) => {
         }
         onNext={goNext}
         showNext={isCorrect === true}
+        style={{ position: 'static', marginTop: '1rem' }}
       />
     </motion.div>
   );

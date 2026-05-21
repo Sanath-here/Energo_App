@@ -11,7 +11,6 @@ const foodItems = [
   { emoji: '🍌', name: 'Banana', energy: 34 },
   { emoji: '🍗', name: 'Chicken', energy: 46 },
   { emoji: '🥕', name: 'Carrot', energy: 20 },
-  { emoji: '🍫', name: 'Chocolate', energy: 40 },
 ];
 
 const ChemicalTask: React.FC<ChemicalTaskProps> = ({ onComplete }) => {
@@ -31,12 +30,10 @@ const ChemicalTask: React.FC<ChemicalTaskProps> = ({ onComplete }) => {
     window.setTimeout(() => setUsedIndex(null), 600);
   };
 
-  const resetCombo = () => setCombo(0);
-
   return (
     <motion.div
-      className="h-full flex flex-col items-center justify-between py-10"
-      style={{ paddingBottom: '3.5rem', overflowY: 'auto' }}
+      className="flex-1 flex flex-col items-center justify-start py-10"
+      style={{ paddingBottom: '12rem' }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
@@ -46,17 +43,17 @@ const ChemicalTask: React.FC<ChemicalTaskProps> = ({ onComplete }) => {
       <div className="w-full max-w-xl flex flex-col items-center gap-6 px-6">
         <p className="text-sm text-gray-300 text-center">Feed the pot with ingredients to release chemical energy. Try combos for bonus energy!</p>
 
-        <div className="w-full grid grid-cols-3 sm:grid-cols-5 gap-3">
+        <div className="chemical-options-grid">
           {foodItems.map((food, i) => (
             <motion.button
               key={food.name}
-              className={`flex flex-col items-center justify-center gap-2 p-3 rounded-xl bg-white-10 border border-gray-600 text-sm`}
-              whileTap={{ scale: 0.95 }}
+              className={`chemical-option flex flex-col items-center justify-center gap-2 p-3 rounded-2xl text-sm w-full ${usedIndex === i ? 'border-yellow-300 shadow-[0_0_0_4px_rgba(251,191,36,0.25)]' : ''}`}
+              whileTap={{ scale: 0.96 }}
               onClick={() => feedFood(i)}
               disabled={energyLevel >= 100}
             >
               <div style={{ fontSize: 28 }} className={usedIndex === i ? 'animate-pop' : ''}>{food.emoji}</div>
-              <div className="text-xs text-gray-300">{food.name}</div>
+              <div className="text-xs text-white">{food.name}</div>
             </motion.button>
           ))}
         </div>
@@ -70,19 +67,19 @@ const ChemicalTask: React.FC<ChemicalTaskProps> = ({ onComplete }) => {
           />
         </div>
 
-        <div className="w-full h-32 bg-white-10 border border-gray-600 rounded-lg flex items-center justify-center text-center px-4">
+        <div className="w-full min-h-[9rem] bg-white-10 border border-gray-600 rounded-lg flex items-center justify-center text-center px-4 py-4 mb-6">
           <div>
-            <p className="text-sm text-gray-300">Chemical energy is stored in food and released when it's used.</p>
-            <p className="mt-2 font-semibold">{lastFood ? `You used ${lastFood}! Combo x${combo}` : 'Tap an ingredient to add it to the pot.'}</p>
-            <button className="btn mt-3" onClick={resetCombo}>Reset Combo</button>
+            <p className="text-sm text-gray-300 mb-4">Chemical energy is stored in food and released when it's used.</p>
+            <p className="mt-2 mb-4 font-semibold">{lastFood ? `You used ${lastFood}! Combo x${combo}` : 'Tap an ingredient to add it to the pot.'}</p>
           </div>
         </div>
       </div>
 
       <DialogueBox
-        text={energyLevel >= 100 ? 'Awesome! You released a lot of chemical energy — that could power muscles and machines.' : 'Chemical energy comes from food and fuel. Feed the pot to release energy!'}
+        text={energyLevel >= 100 ? 'Awesome! You released a lot of chemical energy — that could power muscles and machines.' : 'Chemical energy comes from food and fuel. Add ingredients to the pot to release it!'}
         onNext={onComplete}
         showNext={energyLevel >= 100}
+        style={{ position: 'static', bottom: 'auto' }}
       />
     </motion.div>
   );
