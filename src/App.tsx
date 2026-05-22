@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import { motion } from 'framer-motion';
 import ThreeDCharacter from './components/ThreeDCharacter';
 import Starfield from './components/Starfield';
 import DialogueBox from './components/DialogueBox';
@@ -11,8 +12,10 @@ import ConservationSim from './games/ConservationSim';
 import FinalQuiz from './games/FinalQuiz';
 
 type GameState =
+  | 'SPLASH'
   | 'ENERGY'
   | 'INTRO'
+  | 'MENU'
   | 'MECHANICAL'
   | 'HEAT'
   | 'LIGHT'
@@ -25,8 +28,10 @@ type GameState =
   | 'END';
 
 const states: GameState[] = [
+  'SPLASH',
   'ENERGY',
   'INTRO',
+  'MENU',
   'MECHANICAL',
   'HEAT',
   'LIGHT',
@@ -40,7 +45,7 @@ const states: GameState[] = [
 ];
 
 const App: React.FC = () => {
-  const [gameState, setGameState] = useState<GameState>('ENERGY');
+  const [gameState, setGameState] = useState<GameState>('SPLASH');
   const currentIndex = useMemo(() => states.indexOf(gameState), [gameState]);
 
   const nextState = () => {
@@ -49,41 +54,60 @@ const App: React.FC = () => {
     }
   };
 
+  const goToState = (state: GameState) => {
+    setGameState(state);
+  };
+
   const renderContent = () => {
     switch (gameState) {
+      case 'SPLASH':
+        return (
+          <div className="hero-card glass centered">
+            <motion.div className="hero-copy" style={{ alignItems: 'center', textAlign: 'center' }} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+              <h2 className="hero-title">Welcome to Energo</h2>
+              <p className="hero-text">A short, playful guide to energy — tap to begin.</p>
+              <motion.button className="btn btn-primary mt-6" onClick={nextState} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
+                Start
+              </motion.button>
+            </motion.div>
+          </div>
+        );
+
       case 'ENERGY':
         return (
           <div className="hero-card glass">
-            <div className="hero-copy">
+            <motion.div className="hero-copy" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
               <p className="eyebrow">Energy in action</p>
               <h2 className="hero-title">What is ENERGY?</h2>
               <p className="hero-text">
                 Energy makes things move, shine, heat up, and change. Here are some everyday forms of energy.
               </p>
               <div className="energy-image-grid">
-                <div className="energy-card">
+                <motion.div className="energy-card" whileHover={{ y: -4, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <div className="energy-thumb">⚡</div>
                   <p>Electricity</p>
-                </div>
-                <div className="energy-card">
+                </motion.div>
+                <motion.div className="energy-card" whileHover={{ y: -4, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <div className="energy-thumb">🔥</div>
                   <p>Heat</p>
-                </div>
-                <div className="energy-card">
+                </motion.div>
+                <motion.div className="energy-card" whileHover={{ y: -4, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <div className="energy-thumb">💡</div>
                   <p>Light</p>
-                </div>
-                <div className="energy-card">
+                </motion.div>
+                <motion.div className="energy-card" whileHover={{ y: -4, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <div className="energy-thumb">🔋</div>
                   <p>Chemical</p>
-                </div>
-                <div className="energy-card">
+                </motion.div>
+                <motion.div className="energy-card" whileHover={{ y: -4, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                   <div className="energy-thumb">⚙️</div>
                   <p>Motion</p>
-                </div>
+                </motion.div>
               </div>
-              <button className="btn btn-primary mt-6" onClick={nextState}>Meet Energo</button>
-            </div>
+              <motion.button className="btn btn-primary mt-6" onClick={nextState} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                Meet Energo
+              </motion.button>
+            </motion.div>
           </div>
         );
       case 'INTRO':
@@ -99,25 +123,65 @@ const App: React.FC = () => {
                 <ThreeDCharacter />
               </div>
               <DialogueBox
-                text="Hello! I'm Energo. I'm here to teach you all about ENERGY! Energy is the ability to do work. Let's explore its different forms together." 
+                text="Hello! I'm Energo. I'm here to teach you all about ENERGY! Energy is the ability to do work. Let's explore its different forms together."
                 onNext={nextState}
                 style={{ position: 'static', marginTop: '1rem' }}
               />
             </div>
           </div>
         );
+      case 'MENU':
+        return (
+          <div className="hero-card glass">
+            <div className="hero-copy">
+              <p className="eyebrow">Choose your adventure</p>
+              <h2 className="hero-title">Pick a topic to explore</h2>
+              <p className="hero-text">
+                Select any energy topic below and return here when you're ready for the next one.
+              </p>
+              <div className="energy-image-grid" style={{ marginTop: '1rem' }}>
+                <button className="energy-card btn btn-secondary" onClick={() => goToState('MECHANICAL')}>
+                  ⚙️ Mechanical
+                </button>
+                <button className="energy-card btn btn-secondary" onClick={() => goToState('HEAT')}>
+                  🔥 Heat
+                </button>
+                <button className="energy-card btn btn-secondary" onClick={() => goToState('LIGHT')}>
+                  💡 Light
+                </button>
+                <button className="energy-card btn btn-secondary" onClick={() => goToState('ELECTRICAL')}>
+                  ⚡ Electrical
+                </button>
+                <button className="energy-card btn btn-secondary" onClick={() => goToState('CHEMICAL')}>
+                  🧪 Chemical
+                </button>
+                <button className="energy-card btn btn-secondary" onClick={() => goToState('CONSERVATION')}>
+                  🌍 Conservation
+                </button>
+              </div>
+              <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1rem', flexDirection: 'column', width: '100%' }}>
+                <motion.button className="btn btn-primary" onClick={() => goToState('SUMMARY')} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  Energy Summary
+                </motion.button>
+                <button className="btn btn-secondary" onClick={() => goToState('USES')}>
+                  Energy Uses
+                </button>
+              </div>
+            </div>
+          </div>
+        );
       case 'MECHANICAL':
-        return <MechanicalTask onComplete={nextState} />;
+        return <MechanicalTask onComplete={() => goToState('MENU')} />;
       case 'HEAT':
-        return <HeatTask onComplete={nextState} />;
+        return <HeatTask onComplete={() => goToState('MENU')} />;
       case 'LIGHT':
-        return <LightTask onComplete={nextState} />;
+        return <LightTask onComplete={() => goToState('MENU')} />;
       case 'ELECTRICAL':
-        return <ElectricalTask onComplete={nextState} />;
+        return <ElectricalTask onComplete={() => goToState('MENU')} />;
       case 'CHEMICAL':
-        return <ChemicalTask onComplete={nextState} />;
+        return <ChemicalTask onComplete={() => goToState('MENU')} />;
       case 'CONSERVATION':
-        return <ConservationSim onComplete={nextState} />;
+        return <ConservationSim onComplete={() => goToState('MENU')} />;
       case 'USES':
         return (
           <div className="section-card glass" style={{ paddingBottom: '5rem' }}>
@@ -185,7 +249,6 @@ const App: React.FC = () => {
             <p className="eyebrow">Energo Academy</p>
             <h1>Energy Adventure</h1>
           </div>
-          <div className="header-chip">Stage {currentIndex + 1} / {states.length}</div>
         </header>
 
         <main className="content-area"> {renderContent()} </main>

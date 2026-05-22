@@ -107,6 +107,7 @@ const MechanicalTask: React.FC<MechanicalTaskProps> = ({ onComplete }) => {
         text={isComplete ? "Amazing! That was mechanical energy in motion. The stored potential energy became kinetic energy!" : "Mechanical energy is the energy of moving objects and stored energy. Pull the gear back and release it!"}
         onNext={onComplete}
         showNext={isComplete}
+        nextLabel="Back to Menu"
       />
     </motion.div>
   );

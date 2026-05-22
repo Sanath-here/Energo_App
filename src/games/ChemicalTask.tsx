@@ -79,6 +79,7 @@ const ChemicalTask: React.FC<ChemicalTaskProps> = ({ onComplete }) => {
         text={energyLevel >= 100 ? 'Awesome! You released a lot of chemical energy — that could power muscles and machines.' : 'Chemical energy comes from food and fuel. Add ingredients to the pot to release it!'}
         onNext={onComplete}
         showNext={energyLevel >= 100}
+        nextLabel="Back to Menu"
         style={{ position: 'static', bottom: 'auto' }}
       />
     </motion.div>

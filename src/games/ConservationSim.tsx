@@ -54,7 +54,7 @@ const ConservationSim: React.FC<ConservationSimProps> = ({ onComplete }) => {
 
   return (
     <motion.div
-      className="h-full flex flex-col items-center justify-between py-10"
+      className="conservation-sim h-full flex flex-col items-center justify-between py-10"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4 }}
@@ -132,6 +132,7 @@ const ConservationSim: React.FC<ConservationSimProps> = ({ onComplete }) => {
         }
         onNext={goNext}
         showNext={isCorrect === true}
+        nextLabel={scenarioIndex === scenarios.length - 1 ? 'Back to Menu' : 'Next'}
         style={{ position: 'static', marginTop: '1rem' }}
       />
     </motion.div>

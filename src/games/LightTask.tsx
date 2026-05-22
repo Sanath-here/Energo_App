@@ -139,6 +139,7 @@ const LightTask: React.FC<LightTaskProps> = ({ onComplete }) => {
         text={isLit ? 'Great! Light energy helps us see and makes the world bright.' : 'Light energy comes from sources like bulbs and the sun. Turn the bulb on!'}
         onNext={onComplete}
         showNext={isLit}
+        nextLabel="Back to Menu"
       />
     </motion.div>
   );

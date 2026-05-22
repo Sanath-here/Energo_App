@@ -118,32 +118,36 @@ const HeatTask: React.FC<HeatTaskProps> = ({ onComplete }) => {
   if (showIntro) {
     return (
       <motion.div
-        className="h-full flex flex-col items-center justify-center py-10 px-6"
+        className="relative h-full flex flex-col items-center justify-between py-10 px-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
       >
-        <h2 className="text-2xl font-bold">Heat Energy</h2>
-        <p className="mt-4 text-center text-gray-300 max-w-md">
-          Heat energy is the energy of moving particles and friction. It is what makes things warm when we rub them together.
-        </p>
-        <div className="mt-6 w-full max-w-md space-y-4">
-          <div className="glass p-4 rounded-2xl">
-            <h3 className="font-semibold">What is Heat Energy?</h3>
-            <p className="text-sm text-gray-300 mt-2">
-              Heat comes from motion and friction. When two surfaces rub, particles move faster and energy is felt as warmth.
-            </p>
-          </div>
-          <div className="glass p-4 rounded-2xl">
-            <h3 className="font-semibold">What you will do</h3>
-            <p className="text-sm text-gray-300 mt-2">
-              You can use your camera to show how your hands move. If the camera is unavailable, you can still rub hands with the button.
-            </p>
+        <div className="w-full flex flex-col items-center gap-6">
+          <h2 className="text-2xl font-bold">Heat Energy</h2>
+          <p className="mt-4 text-center text-gray-300 max-w-md">
+            Heat energy is the energy of moving particles and friction. It is what makes things warm when we rub them together.
+          </p>
+          <div className="w-full max-w-md space-y-4">
+            <div className="glass p-4 rounded-2xl">
+              <h3 className="font-semibold">What is Heat Energy?</h3>
+              <p className="text-sm text-gray-300 mt-2">
+                Heat comes from motion and friction. When two surfaces rub, particles move faster and energy is felt as warmth.
+              </p>
+            </div>
+            <div className="glass p-4 rounded-2xl">
+              <h3 className="font-semibold">What you will do</h3>
+              <p className="text-sm text-gray-300 mt-2">
+                You can use your camera to show how your hands move. If the camera is unavailable, you can still rub hands with the button.
+              </p>
+            </div>
           </div>
         </div>
-        <button className="btn btn-primary mt-8" onClick={() => setShowIntro(false)}>
-          Start the Heat Task
-        </button>
+        <div className="w-full max-w-md mt-auto">
+          <button className="btn btn-primary w-full" onClick={() => setShowIntro(false)}>
+            Start the Heat Task
+          </button>
+        </div>
       </motion.div>
     );
   }
@@ -213,6 +217,7 @@ const HeatTask: React.FC<HeatTaskProps> = ({ onComplete }) => {
           text={heatLevel >= 100 ? 'Nice work! Friction from rubbing turns movement into Heat Energy.' : 'Grip the hands and rub them together to feel how heat is made by friction.'}
           onNext={onComplete}
           showNext={taskComplete}
+          nextLabel="Back to Menu"
         />
       </div>
     </div>

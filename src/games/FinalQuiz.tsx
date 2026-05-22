@@ -69,6 +69,7 @@ const FinalQuiz: React.FC<FinalQuizProps> = ({ onComplete }) => {
               <motion.button 
                 key={i}
                 className={cls}
+                whileHover={selected === null ? { scale: 1.02 } : undefined}
                 whileTap={{ scale: 0.985 }}
                 onClick={() => handleAnswer(i)}
                 disabled={selected !== null}

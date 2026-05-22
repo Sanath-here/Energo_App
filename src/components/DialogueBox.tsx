@@ -6,10 +6,11 @@ interface DialogueBoxProps {
   details?: string;
   onNext?: () => void;
   showNext?: boolean;
+  nextLabel?: string;
   style?: React.CSSProperties;
 }
 
-const DialogueBox: React.FC<DialogueBoxProps> = ({ text, details, onNext, showNext = true, style }) => {
+const DialogueBox: React.FC<DialogueBoxProps> = ({ text, details, onNext, showNext = true, nextLabel, style }) => {
   return (
     <motion.div 
       className="dialogue-box glass"
@@ -23,7 +24,7 @@ const DialogueBox: React.FC<DialogueBoxProps> = ({ text, details, onNext, showNe
       {showNext && (
         <div className="dialogue-actions">
           <button className="btn btn-primary" onClick={onNext}>
-            Next
+            {nextLabel || 'Next'}
           </button>
         </div>
       )}

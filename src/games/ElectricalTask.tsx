@@ -116,6 +116,8 @@ const ElectricalTask: React.FC<ElectricalTaskProps> = ({ onComplete }) => {
         }
         onNext={onComplete}
         showNext={bulbLit}
+        nextLabel="Back to Menu"
+        style={{ position: 'static', marginTop: '1rem', alignSelf: 'stretch' }}
       />
     </motion.div>
   );
