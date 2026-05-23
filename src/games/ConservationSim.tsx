@@ -94,11 +94,11 @@ const ConservationSim: React.FC<ConservationSimProps> = ({ onComplete }) => {
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => selectChoice(option)}
-                  className={`flex items-center gap-3 p-4 rounded-2xl border ${stateClass} shadow-md transition-transform`}
-                  style={{ minHeight: 64, alignItems: 'center', color: 'white' }}
+                  className={`flex items-start gap-3 p-4 rounded-2xl border ${stateClass} shadow-md transition-transform`}
+                  style={{ minHeight: 80, color: 'white', whiteSpace: 'normal', wordBreak: 'break-word' }}
                 >
-                  <div style={{ fontSize: 22, width: 36, textAlign: 'center', color: 'white' }}>{emojiMap[option] ?? '🔹'}</div>
-                  <div className="flex-1 text-sm">
+                  <div style={{ fontSize: 22, width: 36, textAlign: 'center', color: 'white', marginTop: 4 }}>{emojiMap[option] ?? '🔹'}</div>
+                  <div className="flex-1" style={{ fontSize: '0.95rem', lineHeight: 1.3, whiteSpace: 'normal' }}>
                     <div className="font-semibold text-white">{option}</div>
                   </div>
                 </motion.button>

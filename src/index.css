@@ -158,6 +158,10 @@ body {
   padding: 0 0.8rem;
 }
 
+.dialogue-text-fit {
+  padding: 0 0.8rem;
+}
+
 .dialogue-details {
   color: var(--text-muted);
 }

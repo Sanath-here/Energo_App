@@ -1,0 +1,5 @@
+- [ ] Inspect existing text box components/styles that need fitting
+- [ ] Add a text-fitting utility (CSS clamp + optional JS measure) for dialogue/text inside containers
+- [ ] Apply it to the relevant “boxes” (likely DialogueBox and any fixed-height cards)
+- [ ] Verify in ChemicalTask and other tasks
+- [ ] Run lint/build checks
