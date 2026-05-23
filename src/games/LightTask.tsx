@@ -75,7 +75,7 @@ const LightTask: React.FC<LightTaskProps> = ({ onComplete }) => {
       transition={{ duration: 0.4 }}
     >
       <h2 className="text-xl font-bold">Light Energy</h2>
-      
+
       <div className="w-full max-w-xl flex flex-col items-center gap-6 px-6">
         <div className="relative w-full h-56 rounded-lg bg-gray-900 border border-gray-600 overflow-hidden flex items-center justify-center">
           <motion.div
@@ -85,12 +85,9 @@ const LightTask: React.FC<LightTaskProps> = ({ onComplete }) => {
           />
 
           <motion.div
-            className="absolute z-10 w-24 h-24 rounded-full"
+            className="relative z-10 w-24 h-24 rounded-full"
             style={{
-              left: '55%',
-              top: '50%',
-              transform: 'translate(-50%, -50%)',
-              background: isLit ? 'rgba(248,250,252,1)' : 'rgba(51,65,85,1)',
+              background: isLit ? 'rgba(248,250,152,1)' : 'rgba(51,65,85,1)',
               boxShadow: isLit
                 ? funMode
                   ? '0 0 70px 32px rgba(253,224,71,0.55)'

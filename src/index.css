@@ -143,13 +143,12 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 1.5rem 2.5rem;
-  gap: 1rem;
-  position: sticky;
-  bottom: 2rem;
+  padding: 1.5rem 2.5rem 1.5rem;
+  gap: 1.5rem;
+  top: 1rem;
+  position: relative;
   z-index: 10;
-  min-height: 160px;
+  min-height: 220px;
 }
 
 .dialogue-text {
@@ -160,9 +159,6 @@ body {
 }
 
 /* Ensure the fitter can measure actual available space */
-.dialogue-box {
-  min-height: 0;
-}
 
 .dialogue-text-fit {
   min-height: 0;
@@ -175,8 +171,10 @@ body {
 }
 
 .dialogue-actions {
+  margin-top: auto;
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 body::before {
