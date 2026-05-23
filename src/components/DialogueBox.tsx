@@ -47,7 +47,7 @@ const DialogueBox: React.FC<DialogueBoxProps> = ({ text, details, onNext, showNe
         )}
       </div>
       {showNext && (
-        <div className="dialogue-actions" style = {{ marginTop: '9rem' }}>
+        <div className="dialogue-actions" style = {{ marginTop: '1rem' }}>
           <button className="btn btn-primary" onClick={onNext}>
             {nextLabel || 'Next'}
           </button>

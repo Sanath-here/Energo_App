@@ -28,29 +28,34 @@ const MechanicalTask: React.FC<MechanicalTaskProps> = ({ onComplete }) => {
   if (showIntro) {
     return (
       <motion.div
-        className="h-full flex flex-col items-center justify-center py-10 px-6"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-      >
-        <h2 className="text-2xl font-bold">Mechanical Energy</h2>
-        <p className="mt-4 text-center text-gray-300 max-w-md">
-          Mechanical energy comes in two forms:
-        </p>
-        <div className="mt-6 w-full max-w-md space-y-4">
-          <div className="glass p-4 rounded-2xl">
-            <h3 className="font-semibold">1. Potential Energy</h3>
-            <p className="text-sm text-gray-300 mt-2">Energy stored when an object is pulled back or raised up.</p>
-          </div>
-          <div className="glass p-4 rounded-2xl">
-            <h3 className="font-semibold">2. Kinetic Energy</h3>
-            <p className="text-sm text-gray-300 mt-2">Energy of motion when the object is released and moves.</p>
-          </div>
-        </div>
-        <button className="btn btn-primary mt-10" onClick={() => setShowIntro(false)}>
-          Start the challenge
-        </button>
-      </motion.div>
+  className="h-full flex flex-col items-center py-10 px-6"
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.4 }}
+>
+  {/* Wrap everything above the button in flex-1 */}
+  <div className="flex-1 flex flex-col items-center w-full">
+    <h2 className="text-2xl font-bold">Mechanical Energy</h2>
+    <p className="mt-4 text-center text-gray-300 max-w-md">
+      Mechanical energy comes in two forms:
+    </p>
+    <div className="mt-6 w-full max-w-md space-y-4">
+      <div className="glass p-4 rounded-2xl">
+        <h3 className="font-semibold">1. Potential Energy</h3>
+        <p className="text-sm text-gray-300 mt-2">Energy stored when an object is pulled back or raised up.</p>
+      </div>
+      <div className="glass p-4 rounded-2xl">
+        <h3 className="font-semibold">2. Kinetic Energy</h3>
+        <p className="text-sm text-gray-300 mt-2">Energy of motion when the object is released and moves.</p>
+      </div>
+    </div>
+  </div>
+
+  {/* Button naturally sits at the bottom */}
+  <button className="btn btn-primary" onClick={() => setShowIntro(false)}>
+    Start the challenge
+  </button>
+</motion.div>
     );
   }
 
@@ -85,7 +90,7 @@ const MechanicalTask: React.FC<MechanicalTaskProps> = ({ onComplete }) => {
             className="absolute left-0 top-1/2 w-16 h-16 bg-blue-500 rounded-full shadow-lg flex items-center justify-center text-white font-bold cursor-grab"
             style={{ y: '-50%' }}
             drag="x"
-            dragConstraints={{ left: 0, right: 260 }}
+            dragConstraints={{ left: 0, right: 300 }}
             dragElastic={0}
             dragMomentum={false}
             onDragStart={() => setActivePhase('potential')}
