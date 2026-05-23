@@ -139,23 +139,23 @@ const App: React.FC = () => {
               <p className="hero-text">
                 Select any energy topic below and return here when you're ready for the next one.
               </p>
-              <div className="energy-image-grid" style={{ marginTop: '1rem' }}>
-                <button className="energy-card btn btn-secondary" onClick={() => goToState('MECHANICAL')}>
+              <div className="energy-image-grid" style={{ marginTop: '1rem', gap: '0.65rem' }}>
+                <button className="energy-card btn btn-secondary" onClick={() => goToState('MECHANICAL')} style={{ padding: '0.75rem 0.55rem', fontSize: '0.7rem' }}>
                   ⚙️ Mechanical
                 </button>
-                <button className="energy-card btn btn-secondary" onClick={() => goToState('HEAT')}>
+                <button className="energy-card btn btn-secondary" onClick={() => goToState('HEAT')} style={{ padding: '0.85rem 0.65rem', fontSize: '0.85rem' }}>
                   🔥 Heat
                 </button>
-                <button className="energy-card btn btn-secondary" onClick={() => goToState('LIGHT')}>
+                <button className="energy-card btn btn-secondary" onClick={() => goToState('LIGHT')} style={{ padding: '0.85rem 0.65rem', fontSize: '0.85rem' }}>
                   💡 Light
                 </button>
-                <button className="energy-card btn btn-secondary" onClick={() => goToState('ELECTRICAL')}>
+                <button className="energy-card btn btn-secondary" onClick={() => goToState('ELECTRICAL')} style={{ padding: '0.85rem 0.65rem', fontSize: '0.75rem' }}>
                   ⚡ Electrical
                 </button>
-                <button className="energy-card btn btn-secondary" onClick={() => goToState('CHEMICAL')}>
+                <button className="energy-card btn btn-secondary" onClick={() => goToState('CHEMICAL')} style={{ padding: '0.85rem 0.65rem', fontSize: '0.75rem' }}>
                   🧪 Chemical
                 </button>
-                <button className="energy-card btn btn-secondary" onClick={() => goToState('CONSERVATION')}>
+                <button className="energy-card btn btn-secondary" onClick={() => goToState('CONSERVATION')} style={{ padding: '0.75rem 0.55rem', fontSize: '0.6rem' }}>
                   🌍 Conservation
                 </button>
               </div>
@@ -175,7 +175,7 @@ const App: React.FC = () => {
       case 'HEAT':
         return <HeatTask onComplete={() => goToState('MENU')} />;
       case 'LIGHT':
-        return <LightTask onComplete={() => goToState('MENU')} />;
+      return <LightTask onComplete={() => goToState('MENU')} />;
       case 'ELECTRICAL':
         return <ElectricalTask onComplete={() => goToState('MENU')} />;
       case 'CHEMICAL':

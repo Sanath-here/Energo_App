@@ -20,7 +20,7 @@ const ElectricalTask: React.FC<ElectricalTaskProps> = ({ onComplete }) => {
     window.setTimeout(() => setIsCharging(false), 300);
   };
 
-  const onConnectorDragEnd = (_: any, info: { offset: { x: number } }) => {
+  const onConnectorDragEnd = (_: unknown, info: { offset: { x: number } }) => {
     if (info.offset.x > 104) {
       setWireConnected(true);
     }

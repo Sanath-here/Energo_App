@@ -12,7 +12,7 @@ const MechanicalTask: React.FC<MechanicalTaskProps> = ({ onComplete }) => {
   const [pullStrength, setPullStrength] = useState(0);
   const [activePhase, setActivePhase] = useState<'idle' | 'potential' | 'kinetic'>('idle');
 
-  const handleRelease = (_: any, info: { offset: { x: number } }) => {
+  const handleRelease = (_: unknown, info: { offset: { x: number } }) => {
     const distance = info.offset.x;
     if (distance > 80) {
       setPullStrength(100);
@@ -47,7 +47,7 @@ const MechanicalTask: React.FC<MechanicalTaskProps> = ({ onComplete }) => {
             <p className="text-sm text-gray-300 mt-2">Energy of motion when the object is released and moves.</p>
           </div>
         </div>
-        <button className="btn btn-primary mt-8" onClick={() => setShowIntro(false)}>
+        <button className="btn btn-primary mt-10" onClick={() => setShowIntro(false)}>
           Start the challenge
         </button>
       </motion.div>
@@ -72,7 +72,7 @@ const MechanicalTask: React.FC<MechanicalTaskProps> = ({ onComplete }) => {
               ? 'Kinetic Energy released'
               : 'Ready to pull the gear'}
           </span>
-          <span>{pullStrength}%</span>
+          <span>{Math.floor(pullStrength)}%</span>
         </div>
 
         <div className="w-full h-4 bg-gray-700 rounded-full overflow-hidden">

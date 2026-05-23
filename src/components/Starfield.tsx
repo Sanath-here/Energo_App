@@ -6,13 +6,22 @@ import * as THREE from 'three';
 function StarFieldPoints() {
   const ref = useRef<THREE.Points>(null);
   
+  // Generate deterministic “random” positions once to satisfy React purity checks.
   const positions = useMemo(() => {
     const pos = new Float32Array(2000 * 3);
+    let seed = 1337;
+    const rand = () => {
+      // LCG
+      seed = (seed * 1664525 + 1013904223) % 4294967296;
+      return seed / 4294967296;
+    };
+
     for (let i = 0; i < 2000; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 10;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 10;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 10;
+      pos[i * 3] = (rand() - 0.5) * 10;
+      pos[i * 3 + 1] = (rand() - 0.5) * 10;
+      pos[i * 3 + 2] = (rand() - 0.5) * 10;
     }
+
     return pos;
   }, []);
 

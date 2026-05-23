@@ -20,7 +20,7 @@ const DialogueBox: React.FC<DialogueBoxProps> = ({ text, details, onNext, showNe
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <div style={{ width: '100%', display: 'flex', flexDirection: 'column' }}>
+      <div style={{ width: '100%', display: 'flex', flexDirection: 'column', minHeight: 0 }}>
         <div className="dialogue-text dialogue-text-fit" style={{ width: '100%' }}>
           <TextFit
             text={text}
@@ -47,7 +47,7 @@ const DialogueBox: React.FC<DialogueBoxProps> = ({ text, details, onNext, showNe
         )}
       </div>
       {showNext && (
-        <div className="dialogue-actions">
+        <div className="dialogue-actions" style = {{ marginTop: '9rem' }}>
           <button className="btn btn-primary" onClick={onNext}>
             {nextLabel || 'Next'}
           </button>
