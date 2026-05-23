@@ -15,12 +15,12 @@ const DialogueBox: React.FC<DialogueBoxProps> = ({ text, details, onNext, showNe
   return (
     <motion.div 
       className="dialogue-box glass"
-      style={style}
+      style={{ display: 'flex', flexDirection: 'column', ...style }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3 }}
     >
-      <div style={{ width: '100%', display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+      <div style={{ width: '100%', display: 'flex', flexDirection: 'column', minHeight: 0, flex: 1 }}>
         <div className="dialogue-text dialogue-text-fit" style={{ width: '100%' }}>
           <TextFit
             text={text}
@@ -47,7 +47,7 @@ const DialogueBox: React.FC<DialogueBoxProps> = ({ text, details, onNext, showNe
         )}
       </div>
       {showNext && (
-        <div className="dialogue-actions" style = {{ marginTop: '1rem' }}>
+        <div className="dialogue-actions" style={{ marginTop: '1rem' }}>
           <button className="btn btn-primary" onClick={onNext}>
             {nextLabel || 'Next'}
           </button>
